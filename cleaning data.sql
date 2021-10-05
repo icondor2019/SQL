@@ -96,7 +96,7 @@ add DateSplit Nvarchar (25)
 update tutorial..dataRaw
 set dateSplit = SUBSTRING(time0,1,charindex('-',time0)+3)
 
---en esta parte se agrego el año de forma artificial, no es lo correcto, ya que no podemos saber el año en todos los datos
+--let's separate the year
 update tutorial..dataRaw
 set dateSplit = concat(DateSplit,'-2014')
 
@@ -117,7 +117,7 @@ set time0 = RTRIM(replace(time0,'kwh',''))
 select time0,Trim(replace(time0,'kwh',''))
 From  Tutorial..DataRaw 
 
---try to use '_' as a character
+--SQL is practical, letÂ´s use '_' as a character to separate more information from the string
 select  Time0,
 	substring(time0,1,CHARINDEX('_',time0)-1)
 From Tutorial ..DataRaw
@@ -162,11 +162,6 @@ set kwh=RIGHT(time0,5)
 select Time2,DATE1, KWH  
 from Tutorial..DataRaw 
 
---the only thing left is to DROP the columns that are no necesary, and try to do some analysis 
+--the only thing left is to DROP the columns that are no necesary
 
 --THANKS FOR WHATCHING--
-
-
-select convert(int,kwh)
-
-from tutorial..dataraw
